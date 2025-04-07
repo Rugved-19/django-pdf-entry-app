@@ -1,0 +1,18 @@
+<form method="POST" autocomplete="off">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_raw_input">Raw Input</label>
+        <input type="text" name="raw_input" id="id_raw_input" class="form-control" placeholder="Enter Raw Input" autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="id_amount">Amount (integer)</label>
+        <input type="number" name="amount_fake" id="id_amount" class="form-control" placeholder="Enter Amount" autocomplete="off">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Entry</button>
+</form>
+
+<script>
+    // Optional: prevent autofill further using JavaScript
+    document.getElementById('id_raw_input').setAttribute('autocomplete', 'off');
+    document.getElementById('id_amount').setAttribute('autocomplete', 'off');
+</script>

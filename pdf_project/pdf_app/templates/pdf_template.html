@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ user.name }}'s Entry Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { text-align: center; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px 10px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .grand-total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ user.name }}'s Entry Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Raw Entry (Count × Amount = Total)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>
+                    {{ entry.raw_input }}({{ entry.amount }}) = {{ entry.total }}     
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="grand-total">
+        Grand Total: {{ grand_total }}
+    </div>
+</body>
+</html>

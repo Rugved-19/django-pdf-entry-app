@@ -1,0 +1,25 @@
+{% extends 'pdf_app/base.html' %}
+{% block content %}
+    <div class="card shadow p-4">
+        <h2 class="mb-3">Entries</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.description }}</td>
+                    <td>₹{{ entry.amount }}</td>
+                    <td>{{ entry.created_at|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'download_pdf' %}" class="btn btn-danger mt-3">Download PDF</a>
+    </div>
+{% endblock %}

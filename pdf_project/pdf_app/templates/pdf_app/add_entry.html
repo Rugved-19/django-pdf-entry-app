@@ -1,0 +1,45 @@
+<!-- templates/pdf_app/add_entry.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Entry</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2>Hello, {{ request.user.username }}!</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Entry</button>
+        <a href="{% url 'download_pdf' %}" class="btn btn-success">Download PDF</a>
+        <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+    </form>
+
+    <hr>
+    <h4>Your Entries</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Input</th>
+                <th>Amount</th>
+                <th>Decimal Count</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.raw_input }}</td>
+                <td>{{ entry.amount }}</td>
+                <td>{{ entry.decimal_count }}</td>
+                <td>{{ entry.calculated_total }}</td>
+                <td><a href="{% url 'delete_entry' entry.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No entries found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
